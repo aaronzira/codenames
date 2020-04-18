@@ -26,6 +26,7 @@ class Codenames(tk.Tk):
 
         self.generate_legend()
         words = self.get_words(words_file)
+        self.words_file = words_file
         self.vocab, self.remaining_words = self.generate_vocab(words)
 
         # create the replacements board first
@@ -109,6 +110,9 @@ class Codenames(tk.Tk):
         '''Randomly assign vocabulary words to colors and locations'''
 
         wordset = set(words)
+        if len(wordset) < self.n_cells:
+            raise ValueError((f'Not enough unique words in {self.words_file} '
+                              f'for {self.size}x{self.size} game board'))
         vocab = [(wordset.pop(), self.legend[i], i // self.size, i % self.size)
                       for i in range(self.n_cells)]
         remaining_words = wordset
