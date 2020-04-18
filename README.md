@@ -12,7 +12,7 @@ any words will be given before starting the game.
 
 ```
 # 5x5 grid
-python codenames.py 5 <<word_file.txt>>
+python codenames.py 5 words_file.txt
 ```
 
 **2. Email the legend to one or more codemasters**
@@ -20,5 +20,5 @@ python codenames.py 5 <<word_file.txt>>
 
 ```
 # 6x6 grid
-python codenames.py 6 <<word_file.txt>> --codemasters <<codemaster1@....com>> <<codemaster2@....com>>
+python codenames.py 6 words_file.txt --codemasters <<codemaster1@....com>> <<codemaster2@....com>>
 ```
