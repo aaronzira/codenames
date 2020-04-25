@@ -17,6 +17,7 @@ python codenames.py 5 words_file.txt
 
 **2. Email the legend to one or more codemasters**
   - good for playing over video calls, or to avoid accidentally having the wrong players see the legend
+  - expects environment variables EMAIL_ADDR and EMAIL_PW, and for that account to be able to send email via smtp.gmail.com
 
 ```
 # 6x6 grid
