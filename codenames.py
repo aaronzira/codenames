@@ -133,9 +133,9 @@ class Codenames(tk.Tk):
         random.shuffle(cells)
         self.first_team = first_team
         self.legend = cells
-        self.threshold = {first_team: first,
-                          second_team: second,
-                          'yellow': float('inf')}
+        self.count = {first_team: first,
+                      second_team: second,
+                      'yellow': float('inf')}
 
         return
 
@@ -146,7 +146,6 @@ class GameBoard(tk.Frame):
         self.controller = controller
         ##self.controller.geometry('1355x554')# exploring title display issue
         self.generate_board()
-        self.correct = {'red': 0, 'blue': 0, 'yellow': float('-inf')}
         self.color_map = {'red': 'red3', 'blue': 'blue3',
                           'yellow': 'yellow4', 'black': 'black'}
 
@@ -195,8 +194,9 @@ class GameBoard(tk.Frame):
             self.end_game()
             return
 
-        self.correct[color] += 1
-        score = f"RED: {self.correct['red']} | BLUE: {self.correct['blue']}"
+        self.controller.count[color] -= 1
+        score = (f"RED: {self.controller.count['red']} | "
+                 f"BLUE: {self.controller.count['blue']}")
         self.controller.title(score)
         ##self.controller.geometry('1355x555')# won't work because it'll reset a resized window
         #look into -- https://stackoverflow.com/questions/27574854/passing-variables-to-tkinter-geometry-method
@@ -205,7 +205,7 @@ class GameBoard(tk.Frame):
         #w, h = geom.split('x')
         #w = int(w) + 1
         #self.controller.geometry('{}x{}'.format(w,h))
-        if self.correct[color] >= self.controller.threshold[color]:
+        if self.controller.count[color] <= 0:
             msg = f'{color.upper()} WINS!'
             self.controller.title(msg)
             print(msg)
