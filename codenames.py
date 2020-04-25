@@ -34,7 +34,9 @@ class Codenames(tk.Tk):
         self.frame_board(ReplacementBoard)
         self.show_frame(ReplacementBoard, title='Change Words')
 
-        #self.photo = tk.PhotoImage(file=...)
+        #image = Image.open('...png').resize((self.button_width * 20,
+        #                                     self.button_height * 20))
+        #self.photo = ImageTk.PhotoImage(image)
 
     def frame_board(self, board):
         '''Create a window of the given board'''
